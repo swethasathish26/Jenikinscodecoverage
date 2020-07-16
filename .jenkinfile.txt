@@ -2,7 +2,8 @@ pipeline{
 agent any
 
 stages{
-stage('build')
+stage('build'){
+
 steps{
 
 echo 'simple java program'
@@ -11,7 +12,8 @@ echo 'simple java program'
 
 stage('git version')
 {
-steps{
+steps
+{
 bat 'git --version'
 }
 }
