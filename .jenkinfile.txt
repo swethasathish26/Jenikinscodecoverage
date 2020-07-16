@@ -7,7 +7,7 @@ parameters {
                      sortMode: 'DESCENDING_SMART'
 					 }
 stages{
-stage{
+stage('git parameter'){
 steps{
  checkout([$class: 'GitSCM', 
                 branches: [[name: "pr/${params.PULL_REQUESTS}/head"]], 
