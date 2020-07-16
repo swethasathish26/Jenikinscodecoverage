@@ -2,6 +2,10 @@ pipeline{
 agent any
 
 stages{
+stage('build')
+{
+echo 'simple java program'
+}
 
 
 stage('git version')
@@ -12,10 +16,15 @@ bat 'git --version'
 }
 
 stage('Run'){
+environment{
+ DATETIME_TAG = java.time.LocalDateTime.now()
+}
 steps{
 bat 'mvn clean' 
 bat 'mvn test'
-echo "build successfull"
+echo 'build successfull'
+echo "Date and time : ${DATETIME_TAG"}
+
 }
 }
 
