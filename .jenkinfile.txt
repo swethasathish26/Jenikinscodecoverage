@@ -3,10 +3,11 @@ agent any
 
 stages{
 stage('build')
-{
+steps{
+
 echo 'simple java program'
 }
-
+}
 
 stage('git version')
 {
