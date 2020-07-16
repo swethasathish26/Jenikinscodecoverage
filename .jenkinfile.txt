@@ -1,5 +1,5 @@
 pipeline{
-any agent
+agent any
 parameters {
         gitParameter name: 'PULL_REQUESTS', 
                      type: 'PT_PULL_REQUEST',
