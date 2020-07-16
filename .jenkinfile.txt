@@ -23,7 +23,7 @@ steps{
 bat 'mvn clean' 
 bat 'mvn test'
 echo 'build successfull'
-echo "Date and time : ${DATETIME_TAG"}
+echo "Date and time : ${DATETIME_TAG"}"
 
 }
 }
