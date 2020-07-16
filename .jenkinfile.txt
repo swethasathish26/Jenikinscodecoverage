@@ -6,15 +6,7 @@ parameters {
                      defaultValue: '1',
                      sortMode: 'DESCENDING_SMART'
 stages{
-stage('Run'){
-steps{
-bat 'mvn clean'
- bat  ' mvn compile'
-bat 'mvn test'
-}
-}
 stage{
-
 steps{
  checkout([$class: 'GitSCM', 
                 branches: [[name: "pr/${params.PULL_REQUESTS}/head"]], 
@@ -26,5 +18,13 @@ steps{
 
 }
 }
+stage('Run'){
+steps{
+bat 'mvn clean'
+ bat  ' mvn compile'
+bat 'mvn test'
+}
+}
+
 }
 }
