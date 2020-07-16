@@ -1,23 +1,25 @@
 pipeline{
 agent any
-parameters {
-        gitParameter name: 'PULL_REQUESTS', 
-                     type: 'PT_PULL_REQUEST',
-                     defaultValue: '1',
-                     sortMode: 'DESCENDING_SMART'
-    }
+
 stages{
-stage('gitParameter'){
- steps {
-                checkout([$class: 'GitSCM', 
-                branches: [[name: "pr/${params.PULL_REQUESTS}/head"]], 
-                doGenerateSubmoduleConfigurations: false, 
-                extensions: [], 
-                gitTool: 'Default', 
-                submoduleCfg: [], 
-                userRemoteConfigs: [[refspec: '+refs/pull/*:refs/remotes/origin/pr/*', url: 'https://github.com/jenkinsci/git-parameter-plugin.git']]])
-            }
-}
+
+stage('clone repo') {
+          steps {
+              withCredentials(usernamePassword(credentialsId :jenkins-user-github ,passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME' )){
+              // Get some code from a GitHub repository
+              bat("""
+              git config --global credential.username ${GIT_USERNAME}
+              git config --global credential.helper "!echo password=${GIT_PASSWORD};
+			  echo"
+              git clone https://github.com/swethasathish26/Jenikinscodecoverage.git
+
+              echo "pulled the code"
+              """)
+
+          }
+
+
+         }
 stage('git version')
 {
 steps{
