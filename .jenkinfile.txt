@@ -2,6 +2,14 @@ pipeline{
 agent any
 
 stages{
+stage('multiple git repo')
+{
+steps{
+echo 'get code from another repo'
+git credentialsId: 'jenkincode', url: 'https://github.com/swethasathish26/swetha.git'
+echo 'successfully completed'
+}
+}
 stage('build'){
 
 steps{
