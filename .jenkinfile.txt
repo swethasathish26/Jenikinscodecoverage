@@ -36,6 +36,11 @@ appName="jenkincodecoverage"
 
 }
 steps{
+
+bat 'mvn clean' 
+bat 'mvn test'
+echo 'build successfull'
+echo "Date and time : ${DATETIME_TAG}"
 script {
  withAWS(region:'ap-southeast-1',credentials:'jenkinspipeline') {
 			
@@ -43,10 +48,6 @@ script {
 
            
 }
-bat 'mvn clean' 
-bat 'mvn test'
-echo 'build successfull'
-echo "Date and time : ${DATETIME_TAG}"
 
 }
 }
