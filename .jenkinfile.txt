@@ -20,6 +20,7 @@ echo 'simple java program'
 
 stage('git version')
 {
+
 steps
 {
 bat 'git --version'
@@ -29,13 +30,25 @@ bat 'git --version'
 stage('Run'){
 environment{
  DATETIME_TAG = java.time.LocalDateTime.now()
+
+BUILD_NUMBER="${BUILD_NUMBER}"
+appName="jenkincodecoverage"
+
 }
 steps{
+script {
+ withAWS(region:'ap-southeast-1',credentials:'jenkinspipeline') {
+			
+			s3Upload(file:"C:/Users/ACER-PC/.jenkins/jobs/pipelinedemo/builds/${env.BUILD_NUMBER}", bucket: 'awsexamplebucket89', tags: "[appName: ${env.appName}")         
+
+           
+}
 bat 'mvn clean' 
 bat 'mvn test'
 echo 'build successfull'
 echo "Date and time : ${DATETIME_TAG}"
 
+}
 }
 }
 
