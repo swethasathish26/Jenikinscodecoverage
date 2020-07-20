@@ -44,7 +44,7 @@ echo "Date and time : ${DATETIME_TAG}"
 script {
  withAWS(region:'ap-southeast-1',credentials:'jenkinspipeline') {
 			
-			s3Upload(file:"C:/Users/ACER-PC/.jenkins/jobs/pipelinedemo/builds/${env.BUILD_NUMBER}", bucket: 'awsexamplebucket89', tags: "[appName: ${env.appName}")         
+			s3Upload(file:"C:/Users/ACER-PC/.jenkins/jobs/pipelinedemo/builds/${env.BUILD_NUMBER}", bucket: 'jenkincodecoverage', tags: "[appName: ${env.appName}")         
 
            
 }
